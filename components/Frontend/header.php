@@ -1,3 +1,7 @@
+<?php
+include("DB/dbConnection.php");
+include("DB/dbClass.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 

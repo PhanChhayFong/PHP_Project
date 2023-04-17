@@ -19,7 +19,7 @@ class dbClass extends Dbh
     $stmt->execute();
     $result = $stmt->fetchAll();
     if (!$result) {
-      echo "There no Data in " . substr($table, 3);
+      // echo "There no Data in " . substr($table, 3);
       return false;
     }
     $this->dbClose($conn);
@@ -128,6 +128,24 @@ class dbClass extends Dbh
     }
     $this->dbClose($conn);
     return $num;
+  }
+  function dbSelectLastInsertID($table)
+  {
+    if (empty($table)) {
+      return false;
+    }
+
+    $sql = "SELECT MAX(od_id) FROM " . $table;
+
+    $conn = $this->dbConn();
+
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+
+    $last_id = $stmt->fetchColumn();
+    $this->dbClose($conn);
+
+    return $last_id;
   }
 }
 

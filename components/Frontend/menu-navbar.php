@@ -59,9 +59,18 @@ if (isset($_SESSION['valid'])) {
 				<div class="main-menu-wrap">
 					<!-- logo -->
 					<div class="site-logo">
-						<a href="/">
-							<img src="../../assets/frontend/img/logo.png" alt="">
-						</a>
+						<?php
+						$heading = "Company";
+						$get_company_logo = new dbClass();
+						$table = "tb_company";
+						$field = "cp_miniLogo";
+						$condition = "";
+						$order = "";
+
+						$logo = $get_company_logo->dbSelectOne($table, $field, $condition, $order);
+						?>
+						<a href="/"> <img
+								src="../assets/images/<?= strtolower($heading) ?>/<?= $logo['cp_miniLogo'] ?>" height="50"> </a>
 					</div>
 					<!-- logo -->
 
@@ -70,9 +79,11 @@ if (isset($_SESSION['valid'])) {
 						<ul>
 							<li class="<?= $uri == '/' ? 'current-list-item' : '' ?>"><a href="/">Home</a></li>
 							<li class="<?= $uri == '/shop' ? 'current-list-item' : '' ?>"><a href="/shop">Shop</a></li>
-							<li class="<?= $uri == '/contact-us' ? 'current-list-item' : '' ?>"><a href="/contact-us">Contact
+							<li class="<?= $uri == '/contact-us' ? 'current-list-item' : '' ?>"><a
+									href="/contact-us">Contact
 									US</a></li>
-							<li class="<?= $uri == '/about-us' ? 'current-list-item' : '' ?>"><a href="/about-us">About US</a>
+							<li class="<?= $uri == '/about-us' ? 'current-list-item' : '' ?>"><a href="/about-us">About
+									US</a>
 							</li>
 							<li class="<?= $uri == '/news' ? 'current-list-item' : '' ?>"><a href="/news">News</a></li>
 							<li>
