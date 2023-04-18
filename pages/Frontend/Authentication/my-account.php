@@ -39,50 +39,69 @@
 
                ?>
                <div class="card text-center" style="border: 5px solid #ccc">
-                    <div class="text-center">
-                         <img src="../../assets/frontend/img/avaters/avatar3.png" class="card-img-top rounded-circle"
-                              style="width: 200px; margin-top: -100px; border: 5px solid #ccc">
-                    </div>
+                    <p class="card-img-top rounded-circle mx-auto" style="width: 200px; height: 200px;
+                              margin-top: -100px; 
+                              border: 5px solid #ccc; 
+                              background-image: url('./assets/images/user/<?= $user['us_image'] ?>');
+                              background-position: center;
+                              background-size: 100%;
+                              background-repeat: no-repeat;
+                              ">
+                    </p>
 
                     <div class="card-body">
                          <div class="row">
                               <div class="col-md-6 border-bottom">
-                                   <p class="my-3">Mr. Jonh Fernandez</p>
+                                   <p class="my-3">
+                                        <?= $user['us_name'] ?>
+                                   </p>
                               </div>
                               <div class="col-md-6 border-bottom">
-                                   <p class="my-3">jonh.fernandez@gmail.com</p>
+                                   <p class="my-3">
+                                        <?= $user['us_email'] ?>
+                                   </p>
 
                               </div>
                               <div class="col-md-12 border-bottom">
-                                   <p class="my-3">+185 9655 9225 852</p>
+                                   <p class="my-3">
+                                        <?= $user['us_phone'] ?>
+                                   </p>
 
                               </div>
                               <div class="col-md-12 border-bottom">
-                                   <p class="my-3">02-Jul-1985</p>
+                                   <p class="my-3">
+                                        <?= $user['us_DOB'] ?>
+                                   </p>
 
                               </div>
                               <div class="col-md-12 border-bottom">
-                                   <p class="my-3">Area 51</p>
+                                   <p class="my-3">
+                                        <?= $user['us_address'] ?>
+                                   </p>
 
                               </div>
                               <div class="col-md-12 border-bottom">
-                                   <p class="my-3">Nevada State, United State of America</p>
+                                   <p class="my-3">
+                                        <?= $user['us_isAdmin'] == 1 ? "Admin" : "User" ?>
+                                   </p>
 
                               </div>
                          </div>
 
                          <div class="row">
                               <div class="col-md-4 my-5">
-                                   <a href="#" class="btn btn-danger font-weight-bold"><i
-                                             class="fas fa-door-open mr-2"></i>Logout</a>
+                                   <a href="../../DB/auth.php?clear=logout" class="btn btn-danger font-weight-bold"><i
+                                             class="fas fa-door-open mr-2"></i> Logout</a>
                               </div>
                               <div class="col-md-4 my-5">
-                                   <a href="#" class="btn btn-success font-weight-bold" data-toggle="modal"
-                                        data-target="#edit_profile"><i class="fas fa-tools mr-2"></i>Edit Profile</a>
+                                   <a class="btn btn-success font-weight-bold" data-bs-toggle="modal"
+                                        data-bs-target="#editProfile">
+                                        <i class="fas fa-tools mr-2"></i> Edit Profile
+                                   </a>
                               </div>
                               <div class="col-md-4 my-5">
-                                   <a href="#" class="btn btn-primary font-weight-bold" data-toggle="modal"
-                                        data-target="#change_password"><i class="fas fa-key mr-2"></i>Change
+                                   <a class="btn btn-primary font-weight-bold" data-toggle="modal"
+                                        data-target="#change_password"><i class="fas fa-key mr-2"></i> Change
                                         Password</a>
                               </div>
                          </div>
@@ -94,56 +113,74 @@
 
 
 <!-- Edit Profile Modal -->
-<div class="modal fade" id="edit_profile" tabindex="-1" role="dialog">
-     <div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal fade" id="editProfile" tabindex="-1" aria-labelledby="editProfileLabel" aria-hidden="true">
+     <div class="modal-dialog">
           <div class="modal-content">
                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Edit Profile</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                         <span aria-hidden="true">&times;</span>
-                    </button>
+                    <h1 class="modal-title fs-5" id="editProfileLabel">Edit Profile
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                </div>
                <div class="modal-body">
-                    <form class="form p-2">
+                    <!-- form input -->
+                    <form class="forms-sample" id="edform" method="POST" enctype="multipart/form-data">
                          <div class="form-group">
-                              <label for="username">Username</label>
-                              <input type="text" name="username" class="form-control" value="Mr. Jonh Fernandez"
-                                   id="username">
+                              <label for="us_edname">Name <span class="text-danger fw-bold">*</span></label>
+                              <input type="text" class="form-control" value="<?= $user['us_name'] ?>" name="us_edname"
+                                   id="us_edname">
                          </div>
                          <div class="form-group">
-                              <label for="email">Email</label>
-                              <input type="email" name="email" class="form-control" value="jonh.fernandez@gmail.com"
-                                   id="email">
+                              <label for="us_edemail">Email <span class="text-danger fw-bold">*</span></label>
+                              <input type="email" class="form-control" value="<?= $user['us_email'] ?>"
+                                   name="us_edemail" id="us_edemail">
                          </div>
                          <div class="form-group">
-                              <label for="phone">Confirm New Password</label>
-                              <input type="text" name="phone" class="form-control" value="185 9655 9225 852" id="phone">
+                              <label for="us_edphone">Phone</label>
+                              <input type="text" class="form-control" value="<?= $user['us_phone'] ?>" name="us_edphone"
+                                   id="us_edphone">
                          </div>
                          <div class="form-group">
-                              <label for="date_of_birth">Date of Birth</label>
-                              <input type="date" name="cn_password" class="form-control" value="02/07/1985"
-                                   id="date_of_birth">
+                              <label for="us_edDOB">Date of Birth</label>
+                              <input type="date" class="form-control" value="<?= $user['us_DOB'] ?>" name="us_edDOB"
+                                   id="us_edDOB">
                          </div>
                          <div class="form-group">
-                              <label for="place_of_birth">Place of Birth</label>
-                              <input type="text" name="place_of_birth" class="form-control" value="Area 51"
-                                   id="place_of_birth">
-                         </div>
-                         <div class="form-group">
-                              <label for="address">Address</label>
-                              <input type="address" name="address" class="form-control"
-                                   value="Nevada State, United State of America" id="address">
+                              <label for="us_ednationality">Nationality</label>
+                              <input type="text" class="form-control" value="<?= $user['us_nationality'] ?>"
+                                   name="us_ednationality" id="us_ednationality">
                          </div>
 
+                         <div class="form-group">
+                              <label for="us_edaddress">Address</label>
+                              <textarea class="form-control" id="us_edaddress" name="us_edaddress"
+                                   rows="5"><?= $user['us_address'] ?></textarea>
+                         </div>
+                         <div class="form-group form-switch">
+                              <input class="form-check-input" type="checkbox" id="us_edisAdmin" name="us_edisAdmin"
+                                   <?= $user['us_isAdmin'] == 1 ? 'checked=checked' : '' ?>>
+                              <label class="form-check-label pt-1" for="flexSwitchCheckDefault">Admin</label>
+                         </div>
 
-                         <button type="submit" class="btn btn-warning float-right text-dark font-weight-bold"><i
-                                   class="fas fa-tools mr-2"></i>Update</button>
+                         <div class="form-group text-center">
+                              <label class="w-100">
+                                   Edit
+                                   <?= $heading ?> Profile
+                              </label>
+                              <label for="us_edimage" class="btn btn-primary btn-sm text-center py-2">
+                                   <i class="fa fa-image" aria-hidden="true"></i>Browse Image
+                              </label>
+                              <input type="file" name="us_edimage" id="us_edimage" class="d-none">
+                              <div id="curr_img" class="mt-3">
+                                   <img id="edimage" src="./assets/images/user/<?= $user['us_image'] ?>" width="200">
+                              </div>
+                         </div>
+                         <button type="submit" class="btn btn-warning mr-2 float-end py-2 text-dark"><i
+                                   class="fas fa-tools me-2"></i>Update</button>
                     </form>
                </div>
           </div>
      </div>
 </div>
-
 
 <!-- Change Password Modal -->
 <div class="modal fade" id="change_password" tabindex="-1" role="dialog">
@@ -177,9 +214,21 @@
      </div>
 </div>
 
-
 <!-- Logo Carousel Section -->
 <?php require 'components/Frontend/logo-carousel.php'; ?>
 
 <!-- Copyrights Section -->
 <?php require 'components/Frontend/copyrights.php'; ?>
+
+<script>
+     _("us_edimage").addEventListener("change", function () {
+          const files = _("us_edimage").files[0];
+          if (files) {
+               const fileReader = new FileReader();
+               fileReader.readAsDataURL(files);
+               fileReader.addEventListener("load", function () {
+                    _("edimage").setAttribute("src", this.result);
+               });
+          }
+     });
+</script>
