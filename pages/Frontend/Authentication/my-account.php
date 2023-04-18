@@ -111,7 +111,6 @@
      </div>
 </div>
 
-
 <!-- Edit Profile Modal -->
 <div class="modal fade" id="editProfile" tabindex="-1" aria-labelledby="editProfileLabel" aria-hidden="true">
      <div class="modal-dialog">
@@ -123,7 +122,8 @@
                </div>
                <div class="modal-body">
                     <!-- form input -->
-                    <form class="forms-sample" id="edform" method="POST" enctype="multipart/form-data">
+                    <form action="./DB/user.process.php?send=update&us_id=<?= $user['us_id'] ?>&pg=myaccount"
+                         class="forms-sample" id="edform" method="POST" enctype="multipart/form-data">
                          <div class="form-group">
                               <label for="us_edname">Name <span class="text-danger fw-bold">*</span></label>
                               <input type="text" class="form-control" value="<?= $user['us_name'] ?>" name="us_edname"
@@ -155,9 +155,9 @@
                               <textarea class="form-control" id="us_edaddress" name="us_edaddress"
                                    rows="5"><?= $user['us_address'] ?></textarea>
                          </div>
-                         <div class="form-group form-switch">
+                         <div class="form-group form-switch d-none">
                               <input class="form-check-input" type="checkbox" id="us_edisAdmin" name="us_edisAdmin"
-                                   <?= $user['us_isAdmin'] == 1 ? 'checked=checked' : '' ?>>
+                                   <?= $user['us_isAdmin'] == 1 ? 'checked=checked' : '' ?> value="1">
                               <label class="form-check-label pt-1" for="flexSwitchCheckDefault">Admin</label>
                          </div>
 

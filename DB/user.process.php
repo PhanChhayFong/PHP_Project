@@ -4,7 +4,10 @@ include "dbClass.php";
 $tb = "tb_user";
 $users = new dbClass();
 $field_img = "us_image";
+function user_update()
+{
 
+}
 if (isset($_POST['submit'])) {
   if (
     !empty($_POST['us_name']) &&
@@ -45,8 +48,8 @@ if (isset($_POST['submit'])) {
   $users->dbDelete($tb, "us_id=" . $id);
   header("location: {$_SERVER['HTTP_ORIGIN']}/admin_" . substr($tb, 3) . "?status=delete&pg=$pg");
 } else if ($_GET['send'] === 'update') {
-  $id = $_GET['us_id'];
   $pg = $_GET['pg'];
+  $id = $_GET['us_id'];
   $field_img = "us_edimage";
   // send field_img and return $save_name
   include "helper/upload_img.php";
@@ -72,7 +75,11 @@ if (isset($_POST['submit'])) {
     $field_img => $save_name ? $save_name : $old_img,
   ];
   $users->dbUpdate($tb, $data, "us_id=" . $id);
-  // header("location: {$_SERVER['HTTP_ORIGIN']}/admin_" . substr($tb, 3) . "?status=update&pg=$pg");
+  if ($pg === 'myaccount')
+    header("location: {$_SERVER['HTTP_ORIGIN']}/my-account?status=update");
+  else {
+    header("location: {$_SERVER['HTTP_ORIGIN']}/admin_" . substr($tb, 3) . "?status=update&pg=$pg");
+  }
 } else if ($_GET['send'] === 'UpdatePass') {
   $userID = $_POST['txtIDforUpdate'];
   $newpass = $_POST['txtNewPass'];
