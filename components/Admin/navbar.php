@@ -19,7 +19,7 @@
           </div>
         </a>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
-          <a class="dropdown-item preview-item">
+          <a class="dropdown-item preview-item" href="/admin_profile">
             <div class="preview-thumbnail">
               <div class="preview-icon bg-dark rounded-circle">
                 <i class="fa fa-user text-success" aria-hidden="true"></i>
@@ -30,7 +30,7 @@
             </div>
           </a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item preview-item">
+          <a class="dropdown-item preview-item" href="/admin_profile">
             <div class="preview-thumbnail">
               <div class="preview-icon bg-dark rounded-circle">
                 <i class="fa fa-cog text-primary" aria-hidden="true"></i>
@@ -48,7 +48,6 @@
               </div>
             </div>
             <div class="preview-item-content">
-
               <p class="preview-subject mb-1">Log out</p>
             </div>
           </a>

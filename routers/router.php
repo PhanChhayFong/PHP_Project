@@ -23,7 +23,7 @@ $routes = [
     '/admin_order_detail' => 'pages/Admin/commerce/order/order-detail.php',
     '/admin_company' => 'pages/Admin/configuration/company/company.php',
     '/admin_user' => 'pages/Admin/configuration/user/user.php',
-    '/admin_profile' => 'pages/Admin/profile/profile.php',
+    '/admin_profile' => 'pages/Admin/configuration/user/user-profile.php',
     '/admin_profile/edit/:id' => 'pages/Admin/profile/profile.php',
 
     '/login' => 'pages/authentication/login.php',

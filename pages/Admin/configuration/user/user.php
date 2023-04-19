@@ -68,7 +68,7 @@ if (isset($_GET['pg'])) {
                          <tbody>
                               <?php
                               $getUS = new dbClass();
-                              $users = $getUS->dbSelect($tb, "*", "", "order by us_name asc limit " . MAXPERPAGE . " offset $offset");
+                              $users = $getUS->dbSelect($tb, "*", "", "order by us_id asc limit " . MAXPERPAGE . " offset $offset");
                               if ($users) {
                                    $i = 1;
                                    foreach ($users as $user) {

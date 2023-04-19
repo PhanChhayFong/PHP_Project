@@ -67,7 +67,6 @@
     _("us_edname").value = name;
     _("us_edemail").value = email;
     _("us_edphone").value = phone;
-    // _("us_edDateOB").value = DateOB;
     _("us_ednationality").value = nationality;
     _("us_edaddress").innerHTML = address;
     _("edimage").setAttribute("src", "./assets/images/<?= strtolower($heading) ?>/" + img);
@@ -75,6 +74,7 @@
       _("us_edisAdmin").checked = true;
     else
       _("us_edisAdmin").checked = false;
+    _("us_edDOB").value = DateOB;
   }
   _("us_edimage").addEventListener("change", function () {
     const files = _("us_edimage").files[0];

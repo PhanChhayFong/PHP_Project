@@ -1,7 +1,6 @@
 <!-- Menu NavBar Section -->
 <?php require 'components/Frontend/menu-navbar.php'; ?>
 
-
 <!-- breadcrumb-section -->
 <div class="breadcrumb-section breadcrumb-bg">
      <div class="container">
@@ -15,11 +14,25 @@
           </div>
      </div>
 </div>
+<div style="margin-top: 20px;">
+     <?php if (isset($_GET['Update'])) {
+          if ($_GET['Update'] === 'success') { ?>
+               <p class="lead text-success text-center fw-bold">Password Updated Successfully!!!</p>
+          <?php } else if ($_GET['Update'] === 'fail') { ?>
+                    <p class="lead text-danger text-center fw-bold">Confirm Password Not Match!!! <br /> Please
+                         Try Again</p>
+          <?php } else if ($_GET['Update'] === 'wrongpass') { ?>
+                         <p class="lead text-danger text-center fw-bold">Your Current Password is Wrong!!! <br /> Please
+                              Try Again</p>
+          <?php } else if ($_GET['Update'] === 'empty') { ?>
+                              <p class="lead text-danger text-center fw-bold">Please Enter New Password and Confirm Password Again!!! </p>
+          <?php }
+     } ?>
+</div>
 <!-- end breadcrumb section -->
 
-
 <div class="container">
-     <div class="row" style="margin: 150px 0px 150px 0px">
+     <div class="row" style="margin: 100px 0px 150px 0px">
           <div class="col-12">
                <?php
                $heading = "User";
@@ -29,14 +42,10 @@
                $condtion = "";
                if (isset($_SESSION['us_id'])) {
                     $user_id = $_SESSION['us_id'];
-
                     $condtion = "us_id = $user_id";
                }
 
-               $order = "";
-
-               $user = $dbClass->dbSelectOne($table, $field, $condtion, $order);
-
+               $user = $dbClass->dbSelectOne($table, $field, $condtion, );
                ?>
                <div class="card text-center" style="border: 5px solid #ccc">
                     <p class="card-img-top rounded-circle mx-auto" style="width: 200px; height: 200px;
@@ -48,7 +57,6 @@
                               background-repeat: no-repeat;
                               ">
                     </p>
-
                     <div class="card-body">
                          <div class="row">
                               <div class="col-md-6 border-bottom">
@@ -100,9 +108,11 @@
                                    </a>
                               </div>
                               <div class="col-md-4 my-5">
-                                   <a class="btn btn-primary font-weight-bold" data-toggle="modal"
-                                        data-target="#change_password"><i class="fas fa-key mr-2"></i> Change
-                                        Password</a>
+                                   <a class="btn btn-primary font-weight-bold" data-bs-toggle="modal"
+                                        data-bs-target="#changePassword">
+                                        <i class="fas fa-key mr-2"></i> Change
+                                        Password
+                                   </a>
                               </div>
                          </div>
                     </div>
@@ -122,7 +132,7 @@
                </div>
                <div class="modal-body">
                     <!-- form input -->
-                    <form action="./DB/user.process.php?send=update&us_id=<?= $user['us_id'] ?>&pg=myaccount"
+                    <form action="./DB/user.process.php?send=update&us_id=<?= $user['us_id'] ?>&pg=my-account"
                          class="forms-sample" id="edform" method="POST" enctype="multipart/form-data">
                          <div class="form-group">
                               <label for="us_edname">Name <span class="text-danger fw-bold">*</span></label>
@@ -183,31 +193,31 @@
 </div>
 
 <!-- Change Password Modal -->
-<div class="modal fade" id="change_password" tabindex="-1" role="dialog">
+<div class="modal fade" id="changePassword" tabindex="-1" aria-labelledby="editProfileLabel" aria-hidden="true">
      <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
                <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalCenterTitle">Change Password</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                         <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                </div>
                <div class="modal-body">
-                    <form class="form p-2">
+                    <form action="./DB/user.process.php?send=UpdatePassword&us_id=<?= $user['us_id'] ?>&pg=my-account"
+                         class="form p-2" method="POST">
                          <div class="form-group">
-                              <label for="password">Current Password</label>
-                              <input type="password" name="password" class="form-control" id="password">
+                              <label for="curr_password">Current Password</label>
+                              <input type="password" class="form-control" name="curr_password" id="curr_password">
                          </div>
                          <div class="form-group">
-                              <label for="new_password">New Password</label>
-                              <input type="password" name="new_password" class="form-control" id="new_password">
+                              <label for="txtNewPass">New Password</label>
+                              <input type="password" class="form-control" name="txtNewPass" id="txtNewPass">
                          </div>
                          <div class="form-group">
-                              <label for="confirm_password">Confirm New Password</label>
-                              <input type="password" name="cn_password" class="form-control" id="confirm_password">
+                              <label for="txtConfirmNewPass">Confirm New Password</label>
+                              <input type="password" class="form-control" name="txtConfirmNewPass"
+                                   id="txtConfirmNewPass">
                          </div>
-                         <button type="submit" class="btn btn-primary float-right font-weight-bold"><i
-                                   class="fas fa-save mr-2"></i>Reset Password</button>
+                         <button type="submit" class="btn btn-primary float-right font-weight-bold mt-3"><i
+                                   class="fas fa-save mr-2"></i> Reset Password</button>
                     </form>
                </div>
           </div>
