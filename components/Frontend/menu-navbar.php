@@ -93,8 +93,7 @@ if (isset($_SESSION['valid'])) {
 												class="fas fa-shopping-cart"></i></a>
 									<?php } ?>
 									<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-									<?php if (!isLogin()) { ?><a><i
-												class="fas fa-user"></i></a>
+									<?php if (!isLogin()) { ?><a><i class="fas fa-user" style="color:white"></i></a>
 									<?php } else { ?>
 										<a class="count-indicator rounded-circle profile-img d-none d-lg-inline-block"></a>
 									<?php } ?>
