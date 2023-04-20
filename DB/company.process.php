@@ -12,7 +12,7 @@ if ($_GET['send'] === 'update') {
     !empty($_POST['cp_edaddress'])
   ) {
     $id = $_GET['cp_id'];
-
+    //Company Logo
     $field_img = "cp_edlogo";
     include "helper/upload_img.php";
     if ($save_name) {
@@ -21,7 +21,7 @@ if ($_GET['send'] === 'update') {
     } else
       $save_name = $company->dbSelectOne($tb, 'cp_logo', "cp_id=" . $id)['cp_logo'];
     $logo = $save_name;
-
+    //Company Mini_Logo
     $field_img = "cp_edminiLogo";
     include "helper/upload_img.php";
     if ($save_name) {
@@ -30,6 +30,15 @@ if ($_GET['send'] === 'update') {
     } else
       $save_name = $company->dbSelectOne($tb, 'cp_miniLogo', "cp_id=" . $id)['cp_miniLogo'];
     $miniLogo = $save_name;
+    //Company Icon
+    $field_img = "cp_edicon";
+    include "helper/upload_img.php";
+    if ($save_name) {
+      $filename = "../assets/images/" . substr($tb, 3) . "/" . $company->dbSelectOne($tb, 'cp_icon', "cp_id=" . $id)['cp_icon'];
+      include "helper/delete_img.php";
+    } else
+      $save_name = $company->dbSelectOne($tb, 'cp_icon', "cp_id=" . $id)['cp_icon'];
+    $icon = $save_name;
 
     $data = [
       'cp_name' => $_POST['cp_edname'],
@@ -42,6 +51,7 @@ if ($_GET['send'] === 'update') {
       'cp_address' => $_POST['cp_edaddress'],
       'cp_logo' => $logo,
       'cp_miniLogo' => $miniLogo,
+      'cp_icon' => $icon,
     ];
     $company->dbUpdate($tb, $data, "cp_id=" . $id);
     header("location: {$_SERVER['HTTP_ORIGIN']}/admin_" . substr($tb, 3) . "?status=update");

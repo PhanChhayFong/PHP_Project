@@ -21,7 +21,7 @@ $edcompany = $get_edCP->dbSelectOne($tb);
                          <div class="row">
                               <div class="col-md-3">
                                    <div class="form-group text-center">
-                                        <label class="w-100">File upload</label>
+                                        <label class="w-100">Company Logo</label>
                                         <label for="cp_edlogo" class="btn btn-primary btn-sm text-center py-2">
                                              <i class="fa fa-image" aria-hidden="true"></i>Browse Image
                                         </label>
@@ -32,7 +32,7 @@ $edcompany = $get_edCP->dbSelectOne($tb);
                                         </div>
                                    </div>
                                    <div class="form-group text-center">
-                                        <label class="w-100">File upload</label>
+                                        <label class="w-100">Company Mini_Logo</label>
                                         <label for="cp_edminiLogo" class="btn btn-primary btn-sm text-center py-2">
                                              <i class="fa fa-image" aria-hidden="true"></i>Browse Image
                                         </label>
@@ -40,6 +40,17 @@ $edcompany = $get_edCP->dbSelectOne($tb);
                                         <div id="curr_img" class="mt-3">
                                              <img id="edminiLogo" width="200"
                                                   src="./assets/images/<?= strtolower($heading) ?>/<?= $edcompany['cp_miniLogo'] ?>">
+                                        </div>
+                                   </div>
+                                   <div class="form-group text-center">
+                                        <label class="w-100">Company Icon</label>
+                                        <label for="cp_edicon" class="btn btn-primary btn-sm text-center py-2">
+                                             <i class="fa fa-image" aria-hidden="true"></i>Browse Image
+                                        </label>
+                                        <input type="file" name="cp_edicon" id="cp_edicon" class="d-none">
+                                        <div id="curr_img" class="mt-3">
+                                             <img id="edicon" width="200"
+                                                  src="./assets/images/<?= strtolower($heading) ?>/<?= $edcompany['cp_icon'] ?>">
                                         </div>
                                    </div>
                               </div>
@@ -114,6 +125,16 @@ $edcompany = $get_edCP->dbSelectOne($tb);
                fileReader.readAsDataURL(files);
                fileReader.addEventListener("load", function () {
                     _("edminiLogo").setAttribute("src", this.result);
+               });
+          }
+     });
+     _("cp_edicon").addEventListener("change", function () {
+          const files = _("cp_edicon").files[0];
+          if (files) {
+               const fileReader = new FileReader();
+               fileReader.readAsDataURL(files);
+               fileReader.addEventListener("load", function () {
+                    _("edicon").setAttribute("src", this.result);
                });
           }
      });
