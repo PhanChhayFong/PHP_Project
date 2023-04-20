@@ -69,8 +69,8 @@ if (isset($_SESSION['valid'])) {
 
 						$logo = $get_company_logo->dbSelectOne($table, $field, $condition, $order);
 						?>
-						<a href="/"> <img
-								src="../assets/images/<?= strtolower($heading) ?>/<?= $logo['cp_miniLogo'] ?>" height="50"> </a>
+						<a href="/"> <img src="../assets/images/<?= strtolower($heading) ?>/<?= $logo['cp_miniLogo'] ?>"
+								height="50"> </a>
 					</div>
 					<!-- logo -->
 
@@ -93,7 +93,8 @@ if (isset($_SESSION['valid'])) {
 												class="fas fa-shopping-cart"></i></a>
 									<?php } ?>
 									<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-									<?php if (!isLogin()) { ?><a class="user-login"><i class="fas fa-user"></i></a>
+									<?php if (!isLogin()) { ?><a><i
+												class="fas fa-user"></i></a>
 									<?php } else { ?>
 										<a class="count-indicator rounded-circle profile-img d-none d-lg-inline-block"></a>
 									<?php } ?>
