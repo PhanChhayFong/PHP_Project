@@ -50,7 +50,7 @@ $company = $getCP->dbSelectOne($tb);
                               </div>
                          </div>
                          <div class="form-group mb-4">
-                              <label class="w-100">Mini Logo</label>
+                              <label class="w-100">Company Icon</label>
                               <div class="text-center">
                                    <img src="./assets/images/<?= strtolower($heading) ?>/<?= $company['cp_icon'] ?>"
                                         width="200" class="border border-5 border-dark p-3">
