@@ -34,7 +34,7 @@ $company = $getCP->dbSelectOne($tb);
                     </div>
                </div>
                <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-lg-3 mx-auto">
                          <div class="form-group mb-4">
                               <label class="w-100">Company Logo</label>
                               <div class="text-center">
@@ -57,7 +57,7 @@ $company = $getCP->dbSelectOne($tb);
                               </div>
                          </div>
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-lg-8 mx-auto">
                          <div class="form-group mb-4">
                               <label for="cp_edname">Company Name</label>
                               <input type="text" class="form-control file-upload-info" name="cp_edname"

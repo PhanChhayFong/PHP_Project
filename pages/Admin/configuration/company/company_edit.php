@@ -19,7 +19,7 @@ $edcompany = $get_edCP->dbSelectOne($tb);
                          action="./DB/<?= strtolower($heading) ?>.process.php?send=update&cp_id=<?= $edcompany['cp_id'] ?>"
                          method="POST" enctype="multipart/form-data">
                          <div class="row">
-                              <div class="col-md-3">
+                              <div class="col-lg-3">
                                    <div class="form-group text-center">
                                         <label class="w-100">Company Logo</label>
                                         <label for="cp_edlogo" class="btn btn-primary btn-sm text-center py-2">
@@ -54,7 +54,7 @@ $edcompany = $get_edCP->dbSelectOne($tb);
                                         </div>
                                    </div>
                               </div>
-                              <div class="col-md-9">
+                              <div class="col-lg-9">
                                    <div class="form-group mb-4">
                                         <label for="cp_edname">Company Name</label>
                                         <input type="text" class="form-control file-upload-info" name="cp_edname"
