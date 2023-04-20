@@ -42,14 +42,21 @@ $company = $getCP->dbSelectOne($tb);
                               <label class="w-100">Company Logo</label>
                               <div class="text-center">
                                    <img src="./assets/images/<?= strtolower($heading) ?>/<?= $company['cp_logo'] ?>"
-                                        width="200" class="border border-5 border-dark">
+                                        width="200" class="border border-5 border-dark p-3">
                               </div>
                          </div>
                          <div class="form-group mb-4">
                               <label class="w-100">Mini Logo</label>
                               <div class="text-center">
                                    <img src="./assets/images/<?= strtolower($heading) ?>/<?= $company['cp_miniLogo'] ?>"
-                                        width="200" class="border border-5 border-dark">
+                                        width="200" class="border border-5 border-dark p-3">
+                              </div>
+                         </div>
+                         <div class="form-group mb-4">
+                              <label class="w-100">Mini Logo</label>
+                              <div class="text-center">
+                                   <img src="./assets/images/<?= strtolower($heading) ?>/<?= $company['cp_icon'] ?>"
+                                        width="200" class="border border-5 border-dark p-3">
                               </div>
                          </div>
                     </div>
