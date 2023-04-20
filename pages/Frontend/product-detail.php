@@ -115,9 +115,9 @@
                                    if($related_products){
                                         foreach($related_products as $related_product){
                                              ?>
-                                                  <div class="col-12 text-center">
+                                                  <div class="col-12 col-md-4 text-center">
                                                        <div class="single-product-item">
-                                                            <div class="product-image">
+                                                            <div class="product-image" style="height:250px">
                                                                  <a href="/shop/product-detail?productid=<?php echo $related_product['pd_id']; ?>">
                                                                       <img src="../assets/images/<?= strtolower($heading) ?>/<?= $related_product['pd_image'] ?>">
                                                                  </a>
@@ -152,30 +152,6 @@
                                    }
                                         
                               ?>
-
-                              
-                              
-                              <!-- <div class="col-lg-4 col-md-6 text-center">
-                                   <div class="single-product-item">
-                                        <div class="product-image">
-                                             <a href="/shop/product-detail"><img src="../../assets/frontend/img/products/product-img-2.jpg" alt=""></a>
-                                        </div>
-                                        <h3>Berry</h3>
-                                        <p class="product-price"><span>Per Kg</span> 70$ </p>
-                                        <a href="/shopping-cart" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-                                   </div>
-                              </div>
-                              <div class="col-lg-4 col-md-6 offset-lg-0 offset-md-3 text-center">
-                                   <div class="single-product-item">
-                                        <div class="product-image">
-                                             <a href="/shop/product-detail"><img src="../../assets/frontend/img/products/product-img-3.jpg" alt=""></a>
-                                        </div>
-                                        <h3>Lemon</h3>
-                                        <p class="product-price"><span>Per Kg</span> 35$ </p>
-                                        <a href="/shopping-cart" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-                                   </div>
-                              </div>
-                          -->
                          </div>
                     </div>
                </div>

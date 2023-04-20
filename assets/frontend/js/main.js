@@ -77,6 +77,29 @@
             }
         });
 
+        // new arrival product carousel
+        $(".new-arrival-product, .sales-product, .related-product-section").owlCarousel({
+            items: 4,
+            loop: true,
+            autoplay: true,
+            margin: 30,
+            responsive:{
+                0:{
+                    items:1,
+                    nav:false
+                },
+                600:{
+                    items:3,
+                    nav:false
+                },
+                1000:{
+                    items:4,
+                    nav:false,
+                    loop:true
+                }
+            }
+        });
+
         // count down
         if($('.time-countdown').length){  
             $('.time-countdown').each(function() {
@@ -165,6 +188,23 @@
     jQuery(window).on("load",function(){
         jQuery(".loader").fadeOut(1000);
     });
+
+    
+    $('.wrap-address-billing').hide();
+
+    // show the payment method visa or credit card form
+    $('#payment-method-visa').click(function() {
+        $('.wrap-address-billing').slideDown(900);
+    });
+
+    // hide the payment method visa or credit card form
+    $('#payment-method-bank').click(function() {
+        $('.wrap-address-billing').slideUp(900);
+    });
+
+    // $('#payment-method-bank, #payment-method-paypal').click(function() {
+    //     $('.wrap-address-billing').slideUp(900);
+    // });
 
 
 }(jQuery));
