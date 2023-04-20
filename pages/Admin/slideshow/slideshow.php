@@ -1,8 +1,5 @@
 <?php
-include "./DB/dbConnection.php";
-include "./DB/dbClass.php";
 $heading = "Slideshow";
-
 
 $tb = "tb_slideshow";
 $ss = new dbClass();

@@ -1,7 +1,4 @@
 <?php
-include "./DB/dbConnection.php";
-include "./DB/dbClass.php";
-
 $heading = "Company";
 $tb = "tb_company";
 //get category data

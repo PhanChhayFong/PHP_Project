@@ -4,6 +4,8 @@ if (isset($_SESSION['valid'])) {
   $us_isAdmin = $_SESSION['us_isAdmin'];
   $us_image = $_SESSION['us_image'];
 }
+$get_company_logo = new dbClass();
+$logo = $get_company_logo->dbSelectOne("tb_company", "cp_logo, cp_miniLogo");
 ?>
 <style>
   .profile-img {
@@ -17,8 +19,10 @@ if (isset($_SESSION['valid'])) {
 </style>
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
   <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-    <a class="sidebar-brand brand-logo" href="/"><img src="../../assets/images/logo.svg" alt="logo" /></a>
-    <a class="sidebar-brand brand-logo-mini" href="/"><img src="../../assets/images/logo-mini.svg" alt="logo" /></a>
+    <a class="sidebar-brand brand-logo" href="/"><img src="../assets/images/company/<?= $logo['cp_logo'] ?>" alt="logo"
+        height="50" /></a>
+    <a class="sidebar-brand brand-logo-mini" href="/"><img src="../assets/images/company/<?= $logo['cp_miniLogo'] ?>"
+        alt="logo" height="50" /></a>
   </div>
   <ul class="nav">
     <li class="nav-item profile">

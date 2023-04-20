@@ -1,6 +1,10 @@
 <?php
 include("DB/dbConnection.php");
 include("DB/dbClass.php");
+
+$get_company_logo = new dbClass();
+$logo = $get_company_logo->dbSelectOne("tb_company", "cp_name,cp_icon");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,10 +17,10 @@ include("DB/dbClass.php");
 		content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
 
 	<!-- title -->
-	<title>Fruitkha - Slider Version</title>
+	<title><?= $logo['cp_name'] ?></title>
 
 	<!-- favicon -->
-	<link rel="shortcut icon" type="image/png" href="../../assets/frontend/img/favicon.png">
+	<link rel="shortcut icon" type="image/png" href="../../assets/images/company/<?= $logo['cp_icon'] ?>">
 	<!-- google font -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">

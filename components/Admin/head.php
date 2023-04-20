@@ -1,3 +1,10 @@
+<?php
+include("DB/dbConnection.php");
+include("DB/dbClass.php");
+$get_company_logo = new dbClass();
+$logo = $get_company_logo->dbSelectOne("tb_company", "cp_name,cp_icon");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +12,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Corona Admin</title>
+  <title><?= $logo['cp_name'] ?></title>
   <!-- cdn font-awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
   <!-- plugins:css -->
@@ -16,7 +23,7 @@
   <!-- Layout styles -->
   <link rel="stylesheet" href="../assets/admin/css/style.css">
   <!-- End layout styles -->
-  <link rel="shortcut icon" href="../../assets/images/favicon.png" />
+  <link rel="shortcut icon" href="../../assets/images/company/<?= $logo['cp_icon'] ?>" />
 
 </head>
 

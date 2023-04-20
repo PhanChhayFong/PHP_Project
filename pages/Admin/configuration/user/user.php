@@ -1,7 +1,4 @@
 <?php
-include "./DB/dbConnection.php";
-include "./DB/dbClass.php";
-
 $heading = "User";
 $tb = "tb_user";
 //get total count of users

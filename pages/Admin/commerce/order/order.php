@@ -1,7 +1,4 @@
 <?php
-include "./DB/dbConnection.php";
-include "./DB/dbClass.php";
-
 $heading = "Order";
 $tb = "tb_order";
 //get total count of Orders

@@ -1,7 +1,4 @@
 <?php
-include "./DB/dbConnection.php";
-include "./DB/dbClass.php";
-
 $heading = "Product";
 
 $tb = "tb_product";

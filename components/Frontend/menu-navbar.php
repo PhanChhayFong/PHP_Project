@@ -60,17 +60,16 @@ if (isset($_SESSION['valid'])) {
 					<!-- logo -->
 					<div class="site-logo">
 						<?php
-						$heading = "Company";
 						$get_company_logo = new dbClass();
 						$table = "tb_company";
-						$field = "cp_miniLogo";
-						$condition = "";
-						$order = "";
-
-						$logo = $get_company_logo->dbSelectOne($table, $field, $condition, $order);
+						$field = "cp_logo, cp_miniLogo";
+						$logo = $get_company_logo->dbSelectOne($table, $field);
 						?>
-						<a href="/"> <img src="../assets/images/<?= strtolower($heading) ?>/<?= $logo['cp_miniLogo'] ?>"
-								height="50"> </a>
+						<a href="/" class="d-none d-lg-block"> <img
+								src="../assets/images/company/<?= $logo['cp_logo'] ?>" height="50">
+						</a>
+						<a href="/" class="d-block d-lg-none"> <img
+								src="../assets/images/company/<?= $logo['cp_miniLogo'] ?>" height="50"> </a>
 					</div>
 					<!-- logo -->
 
