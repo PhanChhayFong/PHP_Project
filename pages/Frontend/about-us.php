@@ -21,7 +21,7 @@ $dbClass = new dbClass();
 $table = "tb_user";
 $field = "*";
 $condition = "us_isAdmin = 1";
-$order = "ORDER BY us_id DESC";
+$order = "ORDER BY us_id ASC";
 
 $teams = $dbClass->dbSelect($table, $field, $condition, $order);
 

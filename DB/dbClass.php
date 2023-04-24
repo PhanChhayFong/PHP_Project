@@ -1,5 +1,5 @@
 <?php
-
+require_once "dbConnection.php";
 class dbClass extends Dbh
 {
   public function dbSelect($table, $column = "*", $criteria = "", $clause = "")

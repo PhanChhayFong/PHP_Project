@@ -59,8 +59,8 @@
                                    if (!in_array($category_name, $displayed_category)) {
                                         array_push($displayed_category, $category_name);
                                         ?>
-                                        <li data-filter=".<?php echo $category_name; ?>">
-                                             <?php echo $product_category['category_name'] ?>
+                                        <li data-filter=".<?= $category_name; ?>">
+                                             <?= $product_category['category_name'] ?>
                                         </li>
                                         <?php
                                    }
@@ -71,44 +71,41 @@
                </div>
           </div>
 
-          <?php
-
-          ?>
           <div class="row product-lists">
                <?php
                foreach ($products as $product) {
                     ?>
-                    <div class="col-lg-4 col-md-6 text-center <?php echo strtolower($product['category_name']) ?>">
+                    <div class="col-lg-4 col-md-6 text-center <?= strtolower($product['category_name']) ?>">
                          <div class="single-product-item" style="height:550px">
                               <div class="product-image">
-                                   <a href="/shop/product-detail?productid=<?php echo $product['pd_id']; ?>">
+                                   <a href="/shop/product-detail?productid=<?= $product['pd_id']; ?>">
                                         <img src="../assets/images/<?= strtolower($heading) ?>/<?= $product['pd_image'] ?>">
                                    </a>
                               </div>
                               <h3>
-                                   <?php echo $product['pd_name']; ?>
+                                   <?= $product['pd_name']; ?>
                               </h3>
                               <?php
                               if (!empty($product['pd_salePrice'])) {
                                    ?>
                                    <p class="product-price my-0"><span>Per Kg</span></p>
                                    <p class="d-flex justify-content-center fw-bold sale-price">
-                                        <?php echo number_format($product['pd_salePrice'], 2); ?>$
+                                        <?= number_format($product['pd_salePrice'], 2); ?>$
                                         <span class="text-decoration-line-through ms-3 text-secondary">
-                                             <?php echo number_format($product['pd_regularPrice'], 2); ?>$
+                                             <?= number_format($product['pd_regularPrice'], 2); ?>$
                                         </span>
                                    </p>
                                    <?php
                               } else if ($product['pd_salePrice'] == 0) {
                                    ?>
                                         <p class="product-price"><span>Per Kg</span>
-                                        <?php echo number_format($product['pd_regularPrice'], 2); ?>$
+                                        <?= number_format($product['pd_regularPrice'], 2); ?>$
                                         </p>
                                    <?php
                               }
                               ?>
 
-                              <form action="../../DB/frontend/add-to-cart.php" method="POST">
+<form action="../../DB/frontend/add-to-cart.php" method="POST">
                                    <?php
                                    if (isset($_SESSION['us_id'])) {
                                         $user_id = $_SESSION['us_id'];
@@ -119,10 +116,8 @@
                                    <input type="hidden" name="instance" value="cart">
                                    <input type="hidden" name="quantity" value="1">
 
-                                   <button type="submit" style="border:0px; background-color: transparent;">
-                                        <a name="add-to-cart" class="cart-btn"><i class="fas fa-shopping-cart"></i>Add to
-                                             Cart</a>
-                                   </button>
+                                   <button type="submit" name="add-to-cart" class="cart-btn"><i
+                                             class="fas fa-shopping-cart"></i> Add to Cart</button>
                               </form>
 
                          </div>
@@ -131,19 +126,10 @@
                }
                ?>
           </div>
-
+          <!--start pagination -->
           <?php
-
+          if ($numpage > 1){
           ?>
-          <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-3">
-               <ul class="pagination">
-                    <li class="page-item">
-
-                    </li>
-
-
-               </ul>
-          </nav>
           <div class="row">
                <div class="col-lg-12 text-center">
                     <div class="pagination-wrap">
@@ -172,6 +158,8 @@
                     </div>
                </div>
           </div>
+          <?php }?>
+          <!--end pagination -->
      </div>
 </div>
 <!-- end products -->

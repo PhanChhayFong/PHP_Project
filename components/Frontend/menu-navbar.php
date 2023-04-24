@@ -44,11 +44,11 @@ if (isset($_SESSION['valid'])) {
 	}
 </style>
 <!--PreLoader-->
-<div class="loader">
+<!-- <div class="loader">
 	<div class="loader-inner">
 		<div class="circle"></div>
 	</div>
-</div>
+</div> -->
 <!--PreLoader Ends-->
 
 <!-- header -->
@@ -88,8 +88,22 @@ if (isset($_SESSION['valid'])) {
 							<li>
 								<div class="header-icons">
 									<?php if (isLogin()) { ?>
-										<a class="shopping-cart" href="/shopping-cart"><i
-												class="fas fa-shopping-cart"></i></a>
+										<a class="shopping-cart" href="/shopping-cart"><i class="fas fa-shopping-cart"></i>
+											(
+											<?php
+											$get_count = new dbClass();
+											$table = "tb_shopping_cart";
+											$condition = "";
+											if (isset($_SESSION['us_id'])) {
+												$user_id = $_SESSION['us_id'];
+												$condition = "user_id = $user_id AND instance = 'cart'";
+											}
+
+											$cart_item = $get_count->dbCount($table, $condition);
+											echo $cart_item;
+											?>
+											)
+										</a>
 									<?php } ?>
 									<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
 									<?php if (!isLogin()) { ?><a><i class="fas fa-user" style="color:white"></i></a>

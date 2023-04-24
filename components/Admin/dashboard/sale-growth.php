@@ -15,7 +15,7 @@
             </div>
           </div>
         </div>
-        <h6 class="text-muted font-weight-normal">Potential growth</h6>
+        <h6 class="text-muted font-weight-normal">Total Products</h6>
       </div>
     </div>
   </div>
@@ -35,7 +35,7 @@
             </div>
           </div>
         </div>
-        <h6 class="text-muted font-weight-normal">Revenue current</h6>
+        <h6 class="text-muted font-weight-normal">Users</h6>
       </div>
     </div>
   </div>
@@ -55,7 +55,7 @@
             </div>
           </div>
         </div>
-        <h6 class="text-muted font-weight-normal">Daily Income</h6>
+        <h6 class="text-muted font-weight-normal">Total Income</h6>
       </div>
     </div>
   </div>
@@ -75,7 +75,7 @@
             </div>
           </div>
         </div>
-        <h6 class="text-muted font-weight-normal">Expense current</h6>
+        <h6 class="text-muted font-weight-normal">Total Order</h6>
       </div>
     </div>
   </div>
