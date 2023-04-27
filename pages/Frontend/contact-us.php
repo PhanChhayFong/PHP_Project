@@ -49,21 +49,12 @@
                     <div class="contact-form-wrap">
                          <?php
                          $get_company = new dbClass();
-                         $table = "tb_company";
-                         $field = "*";
-                         $condition = "";
-                         $order = "";
-
-                         $company = $get_company->dbSelectOne($table, $field, $condition, $order);
-
-
+                         $company = $get_company->dbSelectOne("tb_company", "*");
                          ?>
-
-
                          <div class="contact-form-box">
                               <h4><i class="fas fa-map"></i> Shop Address</h4>
                               <p>
-                                   <?php echo $company['cp_address'] ?>
+                                   <?= $company['cp_address'] ?>
                               </p>
                          </div>
                          <div class="contact-form-box">
@@ -73,17 +64,19 @@
                          <div class="contact-form-box">
                               <h4><i class="fas fa-address-book"></i> Contact</h4>
                               <p>
-                                   Phone: <a class="text-dark" href="tel:<?php echo $company['cp_phone'] ?>"><?php echo $company['cp_phone'] ?></a>
+                                   <b> Phone: </b> <br> <a class="text-dark" href="tel:<?= $company['cp_phone'] ?>"><?= $company['cp_phone'] ?></a>
                                    <br>
-                                   Email: <a class="text-dark" href="mailto:<?php echo $company['cp_email'] ?>"><?php echo $company['cp_email'] ?></a>
+                                   <b>Email: </b><br> <a class="text-dark" href="mailto:<?= $company['cp_email'] ?>"><?= $company['cp_email'] ?></a>
                                    <br>
-                                   Facebook: <a class="text-dark" href="<?php echo $company['cp_facebook'] ?>"><?php echo $company['cp_facebook'] ?></a>
+                                   <b> Facebook: </b> <br> <a class="text-dark"
+                                        href="<?= $company['cp_facebook'] ?>"><?= $company['cp_facebook'] ?></a>
                                    <br>
-                                   Twitter: <a class="text-dark" href="<?php echo $company['cp_twitter'] ?>"><?php echo $company['cp_twitter'] ?></a>
+                                   <b>Twitter: </b><br> <a class="text-dark" href="<?= $company['cp_twitter'] ?>"><?= $company['cp_twitter'] ?></a>
                                    <br>
-                                   Instagram: <a class="text-dark" href="<?php echo $company['cp_instagram'] ?>"><?php echo $company['cp_instagram'] ?></a>
+                                   <b>Instagram: </b><br> <a class="text-dark"
+                                        href="<?= $company['cp_instagram'] ?>"><?= $company['cp_instagram'] ?></a>
                                    <br>
-                                   Telegram: <a class="text-dark" href="<?php echo $company['cp_telegram'] ?>"><?php echo $company['cp_telegram'] ?></a>
+                                   <b>Telegram: </b><br> <a class="text-dark" href="<?= $company['cp_telegram'] ?>"><?= $company['cp_telegram'] ?></a>
                               </p>
                          </div>
                     </div>
