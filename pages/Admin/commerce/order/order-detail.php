@@ -1,7 +1,4 @@
 <?php
-include "./DB/dbConnection.php";
-include "./DB/dbClass.php";
-
 $heading = "Order";
 $tb = "tb_order";
 $getOD = new dbClass();
@@ -76,19 +73,19 @@ $orderProducts = $getOD_Product->dbSelect("tb_orderdetail", "*", "od_id=" . $_GE
                                                        <tr>
                                                             <th>Transaction Mode</th>
                                                             <td>
-                                                                 <?= $order['Tmode'] == '1' ? "Cash On Payment" : "Cash On Delivery" ?>
+                                                                 <?= isset($order['Tmode']) ? $order['Tmode'] == '1' ? "Cash On Payment" : "Cash On Delivery" : "" ?>
                                                             </td>
                                                        </tr>
                                                        <tr>
                                                             <th>Transaction Status</th>
                                                             <td>
-                                                                 <?= $order['Tstatus'] == '1' ? "Paid" : "Purchased" ?>
+                                                                 <?= isset($order['Tstatus']) ?$order['Tstatus'] == '1' ? "Paid" : "Purchased" :""?>
                                                             </td>
                                                        </tr>
                                                        <tr>
                                                             <th>Transaction Date</th>
                                                             <td>
-                                                                 <?= $order['Tstatus'] == '1' ? $order['Tdate'] : "Not Yet Paid" ?>
+                                                                 <?= isset($order['Tstatus']) ? $order['Tstatus'] == '1' ? $order['Tdate'] : "Not Yet Paid" :""?>
                                                             </td>
                                                        </tr>
                                                   </tbody>
@@ -112,38 +109,38 @@ $orderProducts = $getOD_Product->dbSelect("tb_orderdetail", "*", "od_id=" . $_GE
                                                                  <?php
                                                                  if ($orderProducts) {
                                                                       $i = 1;
-                                                                      foreach ($orderProducts as $orderProduct) { 
-                                                                           $productItem = $getOD_Product->dbSelectOne("tb_product", "pd_name, pd_image, pd_salePrice, pd_regularPrice", "pd_id=" . $orderProduct['pd_id'])?>
-                                                                           <div class="carousel-item active">
-                                                                                <div class="col-md-6">
-                                                                                     <div class="card bg-light">
-                                                                                          <div class="row g-0">
-                                                                                               <div
-                                                                                                    class="col-md-5 my-auto card-img">
-                                                                                                    <img src="./assets/images/product/<?= $productItem['pd_image'] ?>"
-                                                                                                         width="150"
-                                                                                                         class="img-fluid">
-                                                                                               </div>
-                                                                                               <div class="col-md-7">
-                                                                                                    <div class="card-body">
-                                                                                                         <h5
-                                                                                                              class="card-title text-dark">
-                                                                                                              <?= $productItem['pd_name']?></h5>
-                                                                                                         <p class="card-text">
-                                                                                                              Quantity:
-                                                                                                              <?= $orderProduct['quantity'] ?>
-                                                                                                         </p>
-                                                                                                         <p class="card-text">
-                                                                                                              Price: $<?= $productItem['pd_salePrice']==0? $productItem['pd_regularPrice']: $productItem['pd_salePrice']?>
-                                                                                                         </p>
+                                                                      foreach ($orderProducts as $orderProduct) {
+                                                                           $productItem = $getOD_Product->dbSelectOne("tb_product", "pd_name, pd_image, pd_salePrice, pd_regularPrice", "pd_id=" . $orderProduct['pd_id']) ?>
+                                                                                     <div class="carousel-item active">
+                                                                                          <div class="col-md-6">
+                                                                                               <div class="card bg-light">
+                                                                                                    <div class="row g-0">
+                                                                                                         <div
+                                                                                                              class="col-md-5 my-auto card-img">
+                                                                                                              <img src="./assets/images/product/<?= $productItem['pd_image'] ?>"
+                                                                                                                   width="150"
+                                                                                                                   class="img-fluid">
+                                                                                                         </div>
+                                                                                                         <div class="col-md-7">
+                                                                                                              <div class="card-body">
+                                                                                                                   <h5
+                                                                                                                        class="card-title text-dark">
+                                                                                                                        <?= $productItem['pd_name'] ?></h5>
+                                                                                                                   <p class="card-text">
+                                                                                                                        Quantity:
+                                                                                                                        <?= $orderProduct['quantity'] ?>
+                                                                                                                   </p>
+                                                                                                                   <p class="card-text">
+                                                                                                                        Price: $<?= $productItem['pd_salePrice'] == 0 ? $productItem['pd_regularPrice'] : $productItem['pd_salePrice'] ?>
+                                                                                                                   </p>
+                                                                                                              </div>
+                                                                                                         </div>
                                                                                                     </div>
                                                                                                </div>
                                                                                           </div>
                                                                                      </div>
-                                                                                </div>
-                                                                           </div>
-                                                                           <?php
-                                                                           $i++;
+                                                                                     <?php
+                                                                                     $i++;
                                                                       }
                                                                  } ?>
                                                             </div>
