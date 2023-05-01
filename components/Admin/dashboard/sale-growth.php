@@ -44,7 +44,7 @@
             </div>
           </div>
         </div>
-        <h6 class="text-muted font-weight-normal">Oerall Sub Total</h6>
+        <h6 class="text-muted font-weight-normal">Ovrall Sub Total</h6>
       </div>
     </div>
   </div>
