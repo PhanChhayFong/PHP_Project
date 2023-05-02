@@ -19,7 +19,7 @@ class dbClass extends Dbh
     $stmt->execute();
     $result = $stmt->fetchAll();
     if (!$result) {
-      // echo "There no Data in " . substr($table, 3);
+      echo "There no Data in " . $table;
       return false;
     }
     $this->dbClose($conn);
@@ -42,7 +42,7 @@ class dbClass extends Dbh
     $stmt->execute();
     $result = $stmt->fetch();
     if (!$result) {
-      // echo "Error in selecting data : " . $stmt->errorInfo();
+      echo "Error in selecting data : " . $stmt->errorInfo();
       return false;
     }
     $this->dbClose($conn);

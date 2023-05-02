@@ -6,6 +6,12 @@
 
      $dbClass= new dbClass();
 
+     if(!isset($_SESSION['us_id'])){
+          header("Location: /login");
+          exit;
+     }
+     
+
      if(isset($_POST['place-order'])){
 
           // order properties

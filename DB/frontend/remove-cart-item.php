@@ -3,6 +3,12 @@
      require_once "../dbClass.php";
      $dbClass = new dbClass();
 
+     if(!isset($_SESSION['us_id'])){
+          header("Location: /login");
+          exit;
+     }
+     
+
      if (isset($_POST['remove-cart-item'])) {
 
           // shopping cart properties

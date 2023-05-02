@@ -42,7 +42,7 @@ $order_join_user = $table_order . " INNER JOIN " . $table_user . " ON " . $join_
 $order = $dbClass->dbSelectOne($order_join_user, $field_order, $condition_order, "");
 
 // Transaction
-$field_transaction = "ts.od_id, ts.us_id, ts.tmode, ts.tstatus, .ts.created_at";
+$field_transaction = "ts.od_id, ts.us_id, ts.tmode, ts.tstatus, ts.created_at";
 $condition_transaction = "ts.od_id = $order_id AND ts.us_id = $user_id";
 $join_condition_transaction = "ts.od_id = ord.od_id";
 $transaction_join_order = $table_transaction . " INNER JOIN " . $table_order . " ON " . $join_condition_transaction;
