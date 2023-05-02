@@ -1,10 +1,12 @@
 <?php
+
 $heading = "Order";
 $tb = "tb_order";
 $getOD = new dbClass();
 $order = $getOD->dbSelectOne($tb, "*", "od_id=" . $_GET['od_id']);
 $getOD_Product = new dbClass();
 $orderProducts = $getOD_Product->dbSelect("tb_orderdetail", "*", "od_id=" . $_GET['od_id']);
+$transaction = $getOD_Product->dbSelectOne("tb_transaction", "*", "od_id=" . $_GET['od_id'])
 ?>
 
 <div class="col-lg-12 grid-margin stretch-card">
@@ -43,20 +45,31 @@ $orderProducts = $getOD_Product->dbSelect("tb_orderdetail", "*", "od_id=" . $_GE
                                                                  <?= $heading; ?> Date
                                                             </th>
                                                             <td>
-                                                                 <?= $order['dateOrdered'] ?>
+                                                                 <?= date_format(DateTime::createFromFormat('Y-m-d H:i:s', $order['dateOrdered']),"D d F Y | g:i A");?>
                                                             </td>
                                                        </tr>
                                                        <tr>
                                                             <th>Status</th>
                                                             <td>
-                                                                 <?= $order['status'] ?>
+                                                                 <?php
+                                                                      if($order['status'] == 'ordered'){
+                                                                           echo "Ordered";
+                                                                      }
+                                                                      else if($order['status'] == 'delivering'){
+                                                                           echo "Delivering";
+                                                                      }
+                                                                      else if($order['status'] == 'delivered'){
+                                                                           echo "Delivered";
+                                                                      }
+                                                                 ?>
                                                             </td>
                                                        </tr>
                                                        <tr>
                                                             <th>Delivered Date</th>
                                                             <td>
                                                                  <?= ($order['dateDelivered'] == NULL || $order['dateDelivered'] == "0000-00-00 00:00:00") ?
-                                                                      "Not yet Deliver" : $order['dateDelivered'] ?>
+                                                                      "Not yet Deliver" : date_format(DateTime::createFromFormat('Y-m-d H:i:s', $order['dateDelivered']),"D d F Y | g:i A") ?>
+                                                                      
                                                             </td>
                                                        </tr>
                                                   </tbody>
@@ -73,19 +86,31 @@ $orderProducts = $getOD_Product->dbSelect("tb_orderdetail", "*", "od_id=" . $_GE
                                                        <tr>
                                                             <th>Transaction Mode</th>
                                                             <td>
-                                                                 <?= isset($order['Tmode']) ? $order['Tmode'] == '1' ? "Cash On Payment" : "Cash On Delivery" : "" ?>
+                                                                 <?= $transaction['tmode'] == 'cash_on_delivery' ? "Cash On Delivery" : "Credit Card" ?>
                                                             </td>
                                                        </tr>
                                                        <tr>
                                                             <th>Transaction Status</th>
                                                             <td>
-                                                                 <?= isset($order['Tstatus']) ?$order['Tstatus'] == '1' ? "Paid" : "Purchased" :""?>
+                                                                 <?= $transaction['tstatus'] == 'pending' ? "Pending" : "Approved" ?>
                                                             </td>
                                                        </tr>
                                                        <tr>
                                                             <th>Transaction Date</th>
                                                             <td>
-                                                                 <?= isset($order['Tstatus']) ? $order['Tstatus'] == '1' ? $order['Tdate'] : "Not Yet Paid" :""?>
+                                                                 <?php
+                                                                      if(!empty($transaction['tstatus'])){
+                                                                           if($transaction['tstatus'] == 'pending' || $transaction['tstatus'] == 'approved'){
+                                                                                ?>
+                                                                                     <?= date_format(DateTime::createFromFormat('Y-m-d H:i:s', $transaction['created_at']),"D d F Y | g:i A") ?>
+                                                                                     
+                                                                                <?php
+                                                                           }
+                                                                           else{
+                                                                                echo "Not Paid";
+                                                                           }
+                                                                      }
+                                                                 ?>
                                                             </td>
                                                        </tr>
                                                   </tbody>
@@ -109,38 +134,38 @@ $orderProducts = $getOD_Product->dbSelect("tb_orderdetail", "*", "od_id=" . $_GE
                                                                  <?php
                                                                  if ($orderProducts) {
                                                                       $i = 1;
-                                                                      foreach ($orderProducts as $orderProduct) {
-                                                                           $productItem = $getOD_Product->dbSelectOne("tb_product", "pd_name, pd_image, pd_salePrice, pd_regularPrice", "pd_id=" . $orderProduct['pd_id']) ?>
-                                                                                     <div class="carousel-item active">
-                                                                                          <div class="col-md-6">
-                                                                                               <div class="card bg-light">
-                                                                                                    <div class="row g-0">
-                                                                                                         <div
-                                                                                                              class="col-md-5 my-auto card-img">
-                                                                                                              <img src="./assets/images/product/<?= $productItem['pd_image'] ?>"
-                                                                                                                   width="150"
-                                                                                                                   class="img-fluid">
-                                                                                                         </div>
-                                                                                                         <div class="col-md-7">
-                                                                                                              <div class="card-body">
-                                                                                                                   <h5
-                                                                                                                        class="card-title text-dark">
-                                                                                                                        <?= $productItem['pd_name'] ?></h5>
-                                                                                                                   <p class="card-text">
-                                                                                                                        Quantity:
-                                                                                                                        <?= $orderProduct['quantity'] ?>
-                                                                                                                   </p>
-                                                                                                                   <p class="card-text">
-                                                                                                                        Price: $<?= $productItem['pd_salePrice'] == 0 ? $productItem['pd_regularPrice'] : $productItem['pd_salePrice'] ?>
-                                                                                                                   </p>
-                                                                                                              </div>
-                                                                                                         </div>
+                                                                      foreach ($orderProducts as $orderProduct) { 
+                                                                           $productItem = $getOD_Product->dbSelectOne("tb_product", "pd_name, pd_image, pd_salePrice, pd_regularPrice", "pd_id=" . $orderProduct['pd_id'])?>
+                                                                           <div class="carousel-item active">
+                                                                                <div class="col-md-6">
+                                                                                     <div class="card bg-light">
+                                                                                          <div class="row g-0">
+                                                                                               <div
+                                                                                                    class="col-md-5 my-auto card-img">
+                                                                                                    <img src="./assets/images/product/<?= $productItem['pd_image'] ?>"
+                                                                                                         width="150"
+                                                                                                         class="img-fluid">
+                                                                                               </div>
+                                                                                               <div class="col-md-7">
+                                                                                                    <div class="card-body">
+                                                                                                         <h5
+                                                                                                              class="card-title text-dark">
+                                                                                                              <?= $productItem['pd_name']?></h5>
+                                                                                                         <p class="card-text">
+                                                                                                              Quantity:
+                                                                                                              <?= $orderProduct['quantity'] ?>
+                                                                                                         </p>
+                                                                                                         <p class="card-text">
+                                                                                                              Price: $<?= number_format($productItem['pd_salePrice'],2 ) ==0 ? number_format($productItem['pd_regularPrice'],2) : number_format($productItem['pd_salePrice'],2 ) ?>
+                                                                                                         </p>
                                                                                                     </div>
                                                                                                </div>
                                                                                           </div>
                                                                                      </div>
-                                                                                     <?php
-                                                                                     $i++;
+                                                                                </div>
+                                                                           </div>
+                                                                           <?php
+                                                                           $i++;
                                                                       }
                                                                  } ?>
                                                             </div>
@@ -164,13 +189,13 @@ $orderProducts = $getOD_Product->dbSelect("tb_orderdetail", "*", "od_id=" . $_GE
                                                        <tr>
                                                             <td>SubTotal</td>
                                                             <th class="text-end">$
-                                                                 <?= $order['subTotal'] ?>
+                                                                 $<?= number_format($order['subTotal'], 2) ?>
                                                             </th>
                                                        </tr>
                                                        <tr>
                                                             <td>Tax</td>
                                                             <th class="text-end">$
-                                                                 <?= $order['subTotal'] * 0.1 ?>
+                                                                 $<?= number_format($order['subTotal'], 2) ?>
                                                             </th>
                                                        </tr>
                                                        <tr>
@@ -181,7 +206,7 @@ $orderProducts = $getOD_Product->dbSelect("tb_orderdetail", "*", "od_id=" . $_GE
                                                        <tr>
                                                             <td>Total</td>
                                                             <th class="text-end">
-                                                                 <?= $order['totalPrice'] ?>
+                                                                 $<?= number_format($order['totalPrice'], 2) ?>
                                                             </th>
                                                        </tr>
                                                   </tbody>

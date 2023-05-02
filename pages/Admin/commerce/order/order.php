@@ -50,34 +50,46 @@ if (isset($_GET['pg'])) {
                                                   <?= $i + $offset ?>
                                              </td>
                                              <td>
-                                                  <?= $order['subTotal'] ?>
+                                                  $
+                                                  <?= number_format($order['subTotal'], 2) ?>
                                              </td>
                                              <td>
-                                                  <?= $order['subTotal'] * 0.1 ?>
+                                                  $
+                                                  <?= number_format($order['tax'], 2) ?>
                                              </td>
                                              <td>
-                                                  <?= $order['totalPrice'] ?>
+                                                  $
+                                                  <?= number_format($order['totalPrice'], 2) ?>
                                              </td>
                                              <td>
                                                   <?= $order['firstname'] . " " . $order['lastname'] ?>
                                              </td>
                                              <td>
+                                                  +855
                                                   <?= $order['phone'] ?>
                                              </td>
                                              <td>
-                                                  <?= $order['status'] ?>
+                                                  <?php
+                                                  if ($order['status'] == 'ordered') {
+                                                       echo "Ordered";
+                                                  } else if ($order['status'] == 'delivering') {
+                                                       echo "Delivering";
+                                                  } else if ($order['status'] == 'delivered') {
+                                                       echo "Delivered";
+                                                  }
+                                                  ?>
                                              </td>
                                              <td>
-                                                  <?= $order['dateOrdered'] ?>
+                                                  <?= date_format(DateTime::createFromFormat('Y-m-d H:i:s', $order['dateOrdered']), "d F Y | g:i A") ?>
                                              </td>
                                              <td>
                                                   <a href="/admin_order_detail?od_id=<?= $order['od_id'] ?>&pg=<?= $pg ?>"
                                                        class="btn btn-success btn-sm py-2"><i class="fas fa-eye m-0"></i></a>
-                                                  <?php if ($order['status'] != "Success") { ?>
+                                                  <?php if ($order['status'] != "delivered") { ?>
                                                        <a href="./DB/<?= strtolower($heading) ?>.process.php?send=update&od_id=<?= $order['od_id'] ?>&status=<?= $order['status'] ?>&pg=<?= $pg ?>"
                                                             class="btn btn-warning btn-sm py-2"><i class="fas fa-truck m-0"></i></a>
                                                   <?php } ?>
-                                                  <?php if ($order['status'] == "Ordered") { ?>
+                                                  <?php if ($order['status'] == "ordered") { ?>
                                                        <a href="#" class="btn btn-danger btn-sm py-2" data-bs-toggle="modal"
                                                             data-bs-target="#delete<?= $heading ?>"
                                                             onclick="loadDataForDelete(<?= $order['od_id'] ?>)"><i
