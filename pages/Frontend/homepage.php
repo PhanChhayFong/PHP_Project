@@ -14,7 +14,6 @@
 <?php require 'components/Frontend/Homepage/sales-product.php'; ?>
 
 <!-- Testimonial Section -->
-<?php require 'components/Frontend/testimonial.php'; ?>
 
 <!-- Shop Banner Section -->
 <?php require 'components/Frontend/Homepage/shop-banner.php'; ?>

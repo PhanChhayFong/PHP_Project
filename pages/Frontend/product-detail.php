@@ -115,7 +115,7 @@
                                    if($related_products){
                                         foreach($related_products as $related_product){
                                              ?>
-                                                  <div class="col-12 col-md-4 text-center">
+                                                  <div class="col-12 text-center">
                                                        <div class="single-product-item">
                                                             <div class="product-image" style="height:250px">
                                                                  <a href="/shop/product-detail?productid=<?php echo $related_product['pd_id']; ?>">

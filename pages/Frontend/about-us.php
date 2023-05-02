@@ -159,9 +159,6 @@ $company = $dbClass->dbSelectOne($table, $field, $condition, $order);
 </div>
 <!-- end team section -->
 
-<!-- Testimonial Section -->
-<?php require 'components/Frontend/testimonial.php'; ?>
-
 <!-- Logo Carousel Section -->
 <?php require 'components/Frontend/logo-carousel.php'; ?>
 
