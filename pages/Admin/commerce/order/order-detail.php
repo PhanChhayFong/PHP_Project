@@ -188,14 +188,14 @@ $transaction = $getOD_Product->dbSelectOne("tb_transaction", "*", "od_id=" . $_G
                                                   <tbody>
                                                        <tr>
                                                             <td>SubTotal</td>
-                                                            <th class="text-end">$
-                                                                 $<?= number_format($order['subTotal'], 2) ?>
+                                                            <th class="text-end">
+                                                                 $ <?= number_format($order['subTotal'], 2) ?>
                                                             </th>
                                                        </tr>
                                                        <tr>
                                                             <td>Tax</td>
-                                                            <th class="text-end">$
-                                                                 $<?= number_format($order['subTotal'], 2) ?>
+                                                            <th class="text-end">
+                                                                 $ <?= number_format($order['subTotal'], 2) ?>
                                                             </th>
                                                        </tr>
                                                        <tr>
