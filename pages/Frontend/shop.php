@@ -109,12 +109,12 @@
                                    <?php
                                    if (isset($_SESSION['us_id'])) {
                                         $user_id = $_SESSION['us_id'];
-                                   }
-                                   ?>
-                                   <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
-                                   <input type="hidden" name="product_id" value="<?php echo $product['pd_id']; ?>">
-                                   <input type="hidden" name="instance" value="cart">
-                                   <input type="hidden" name="quantity" value="1">
+                                        ?>
+                                        <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
+                                        <input type="hidden" name="product_id" value="<?php echo $product['pd_id']; ?>">
+                                        <input type="hidden" name="instance" value="cart">
+                                        <input type="hidden" name="quantity" value="1">
+                                   <?php } ?>
 
                                    <button type="submit" name="add-to-cart" class="cart-btn"><i
                                              class="fas fa-shopping-cart"></i> Add to Cart</button>

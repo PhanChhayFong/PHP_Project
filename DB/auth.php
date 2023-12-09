@@ -2,10 +2,11 @@
 
 function isLogin()
 {
-    if (isset($_SESSION['valid'])) {
-        return true;
-    }
-    return false;
+    // if (isset($_SESSION['valid'])) {
+    //     return true;
+    // }
+    // return false;
+    return isset($_SESSION['valid']) ? true : false;
 }
 function checkLogin($email, $password)
 {
